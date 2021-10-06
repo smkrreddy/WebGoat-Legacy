@@ -13,15 +13,24 @@ pipeline{
             }
         }
       
-        stage('Fortify Translate'){
+        stage('Fortify Clean'){
             steps{
-                sh "sourceanalyzer -b ${BUILD_NUMBER} src/**/*.ts -Dcom.fortify.sca.Phase0HigherOrder.Languages=javascript,typescript ${ARGS}"
+                //sh "sourceanalyzer -b ${BUILD_NUMBER} src/**/*.ts -Dcom.fortify.sca.Phase0HigherOrder.Languages=javascript,typescript ${ARGS}"
+                sh "sourceanalyzer -b WebGoat5.0 -clean"
             }
         }
         
-        stage('Fortify Scan' ){
+        stage('Fortify Scan1' ){
             steps{
-                sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
+                sh "sourceanalyzer -b WebGoat5.0 -source 1.5 -cp "WebGoat5.0/WebContent/WEB-INF/lib/*.jar""
+                //sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
+            }
+        }
+
+        stage('Fortify Scan2' ){
+            steps{
+                sh "sourceanalyzer -b WebGoat5.0 -scan -f WebGoat5.0.fpr"
+                //sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }
         

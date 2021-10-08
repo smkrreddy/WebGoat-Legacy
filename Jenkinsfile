@@ -22,7 +22,7 @@ pipeline{
         
         stage('Fortify Scan1' ){
             steps{
-                sh "sourceanalyzer -b WebGoat5.0 -source 1.5 -cp "WebGoat-Legacy/WebContent/WEB-INF/lib/*.jar""
+                sh "sourceanalyzer -b WebGoat5.0 -source 1.5 WebGoat-Legacy"
                 //sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }

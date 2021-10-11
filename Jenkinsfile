@@ -22,14 +22,15 @@ pipeline{
         
         stage('Fortify Scan1' ){
             steps{
-                sh "sourceanalyzer -b WebGoat5.0 -source 1.5 WebGoat-Legacy"
+                sh label: '', script: 'sourceanalyzer -b ${BUILD_NUMBER} -source 1.5 -cp "target/*.jar" WebGoat-Legacy'
+                //sh "sourceanalyzer -b WebGoat5.0 -source 1.5 -cp 'target/*.jar' WebGoat-Legacy"
                 //sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }
 
         stage('Fortify Scan2' ){
             steps{
-                sh "sourceanalyzer -b WebGoat5.0 -scan -f WebGoat5.0.fpr"
+                sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f WebGoat6.0.fpr"
                 //sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }

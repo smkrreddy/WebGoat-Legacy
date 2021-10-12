@@ -12,11 +12,7 @@ pipeline{
                 sh "fortifyupdate -acceptKey -includeRules -url https://sscdevops01.mmm.com:8443/ssc"
             }
         }
-        stage('Verify Fortify Version'){
-            steps{
-                sh "sourceanalyzer -version"
-            }
-        }
+
         stage('Maven Package'){
             steps{
                 sh "mvn package"

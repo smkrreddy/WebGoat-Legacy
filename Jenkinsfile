@@ -3,7 +3,7 @@ pipeline{
         label 'fortify-sca'
     }
     environment {
-        ARGS = "-Dcom.fortify.WorkingDirectory=. -Dcom.fortify.sca.ProjectRoot=."
+        ARGS = "-Dcom.fortify.WorkingDirectory=/home/jenkins -Dcom.fortify.sca.ProjectRoot=/home/jenkins"
     }
 
     stages{

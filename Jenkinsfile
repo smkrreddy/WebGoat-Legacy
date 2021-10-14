@@ -3,7 +3,7 @@ pipeline{
         label 'fortify-sca'
     }
     environment {
-        ARGS = "-Dcom.fortify.WorkingDirectory=/home/jenkins -Dcom.fortify.sca.ProjectRoot=/home/jenkins"
+        ARGS = "-Dcom.fortify.WorkingDirectory=. -Dcom.fortify.sca.ProjectRoot=."
     }
 
     stages{
@@ -32,7 +32,7 @@ pipeline{
         }
         stage('Fortify Scan' ){
             steps{
-                sh "sourceanalyzer -b ${BUILD_NUMBER} -cp 'WebGoat-Legacy/target/*.jar' target ${ARGS}"
+                sh "sourceanalyzer -b ${BUILD_NUMBER} -cp 'target/*.jar' target ${ARGS}"
                 sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }

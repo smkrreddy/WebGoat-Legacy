@@ -32,7 +32,7 @@ pipeline{
         }
         stage('Fortify Scan' ){
             steps{
-                sh "sourceanalyzer -b ${BUILD_NUMBER} -source 1.5 -cp 'WebGoat-Legacy/target/*.jar' target"
+                sh "sourceanalyzer -b ${BUILD_NUMBER} -cp 'WebGoat-Legacy/target/*.jar' target"
                 sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }

@@ -25,7 +25,11 @@ pipeline{
                 sh "sourceanalyzer -b ${BUILD_NUMBER} -clean"
             }
         }
-        
+        stage('List Files' ){
+            steps{
+                sh "ls -la /home/jenkins/workspace/fortify-sai/target/WebGoat-6.0.1/WEB-INF/classes/org/owasp/webgoat"
+            }
+        }
         stage('Fortify Scan' ){
             steps{
                 sh "sourceanalyzer -b ${BUILD_NUMBER} -source 1.5 -cp 'WebGoat-Legacy/target/*.jar' target"

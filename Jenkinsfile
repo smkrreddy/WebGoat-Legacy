@@ -32,7 +32,7 @@ pipeline{
         }
         stage('Fortify Scan' ){
             steps{
-                sh "sourceanalyzer -b ${BUILD_NUMBER} -cp 'target/*.jar'"
+                sh "sourceanalyzer -b ${BUILD_NUMBER} -cp 'target/*.jar' 'target/**/*.java'"
                 sh "sourceanalyzer -b ${BUILD_NUMBER} -scan -f results.fpr ${ARGS}"
             }
         }
